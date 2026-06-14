@@ -15,7 +15,7 @@ class IniciativaController extends Controller
             $query->where('nome', 'like', '%' . $request->search . '%');
         }
 
-        $iniciativas = $query->get();
+        $iniciativas = $query->with('eventos')->get(); 
 
         return view('iniciativas.index', compact('iniciativas'));
     }

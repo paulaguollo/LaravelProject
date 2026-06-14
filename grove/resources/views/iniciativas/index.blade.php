@@ -44,9 +44,11 @@
                 </td>
                 <td>{{ $iniciativa->nome }}</td>
                 <td>{{ $iniciativa->categoria }}</td>
-                <td>
-                    <a href="{{ route('eventos.index', $iniciativa->id) }}" class="btn btn-sm btn-outline-dark">Ver Eventos</a>
-                </td>
+            <td>
+    <a href="{{ route('eventos.index', $iniciativa->id) }}" class="btn btn-sm btn-outline-dark">
+        Ver Eventos ({{ $iniciativa->eventos->count() }})
+    </a> 
+</td>
                 @auth
                 <td>
                     <a href="{{ route('iniciativas.edit', $iniciativa->id) }}" class="btn btn-sm btn-warning">Editar</a>
