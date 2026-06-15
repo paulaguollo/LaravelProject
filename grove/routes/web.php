@@ -8,6 +8,10 @@ use App\Http\Controllers\EventoController;
 // Página principal
 Route::get('/', [IniciativaController::class, 'index'])->name('iniciativas.index');
 
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
 // Iniciativas
 Route::get('/iniciativas/{id}/eventos', [EventoController::class, 'index'])->name('eventos.index');
 
