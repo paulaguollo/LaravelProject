@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Evento;
 use App\Models\Iniciativa;
+use Illuminate\Support\Facades\Storage;
 
 class EventoController extends Controller
 {
@@ -33,7 +34,7 @@ class EventoController extends Controller
 
         $caminho = null;
         if ($request->hasFile('imagem')) {
-            $caminho = $request->file('imagem')->store('eventos', 'public');
+            $caminho = Storage::putFile('eventos', $request->file('imagem'));
         }
 
         Evento::create([
@@ -64,7 +65,7 @@ class EventoController extends Controller
 
         $caminho = $evento->imagem;
         if ($request->hasFile('imagem')) {
-            $caminho = $request->file('imagem')->store('eventos', 'public');
+            $caminho = Storage::putFile('eventos', $request->file('imagem'));
         }
 
         $evento->nome            = $request->nome;

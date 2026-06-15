@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Iniciativa;
+use Illuminate\Support\Facades\Storage;
 
 class IniciativaController extends Controller
 {
@@ -15,7 +16,7 @@ class IniciativaController extends Controller
             $query->where('nome', 'like', '%' . $request->search . '%');
         }
 
-        $iniciativas = $query->with('eventos')->get(); 
+        $iniciativas = $query->with('eventos')->get();
 
         return view('iniciativas.index', compact('iniciativas'));
     }
@@ -36,7 +37,7 @@ class IniciativaController extends Controller
 
         $caminho = null;
         if ($request->hasFile('imagem')) {
-            $caminho = $request->file('imagem')->store('iniciativas', 'public');
+            $caminho = Storage::putFile('iniciativas', $request->file('imagem'));
         }
 
         Iniciativa::create([
@@ -68,7 +69,7 @@ class IniciativaController extends Controller
 
         $caminho = $iniciativa->imagem;
         if ($request->hasFile('imagem')) {
-            $caminho = $request->file('imagem')->store('iniciativas', 'public');
+            $caminho = Storage::putFile('iniciativas', $request->file('imagem'));
         }
 
         $iniciativa->nome      = $request->nome;
