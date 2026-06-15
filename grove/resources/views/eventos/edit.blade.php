@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@use('Illuminate\Support\Facades\Storage')
 
 @section('content')
 <div class="row justify-content-center">
@@ -28,8 +29,7 @@
             <div class="mb-3">
                 <label>Imagem atual</label><br>
                 @if($evento->imagem)
-                    <img src="{{ asset('storage/' . $evento->imagem) }}" width="100" class="mb-2">
-                @else
+<img src="{{ Storage::url($evento->imagem) }}" width="100" class="mb-2">                @else
                     <p>Sem imagem</p>
                 @endif
                 <input type="file" name="imagem" class="form-control" accept="image/*">

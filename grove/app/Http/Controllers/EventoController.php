@@ -65,7 +65,7 @@ class EventoController extends Controller
 
         $caminho = $evento->imagem;
         if ($request->hasFile('imagem')) {
-            $caminho = Storage::putFile('eventos', $request->file('imagem'));
+            $caminho = Storage::disk('public')->putFile('eventos', $request->file('imagem'));
         }
 
         $evento->nome            = $request->nome;

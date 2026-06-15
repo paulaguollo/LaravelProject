@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@use('Illuminate\Support\Facades\Storage')
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -29,8 +30,7 @@
             <tr>
                 <td>
                     @if($evento->imagem)
-                        <img src="{{ asset('storage/' . $evento->imagem) }}" width="80">
-                    @else
+<img src="{{ Storage::url($evento->imagem) }}" width="80">                    @else
                         Sem imagem
                     @endif
                 </td>

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@use('Illuminate\Support\Facades\Storage')
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -37,18 +38,18 @@
             <tr>
                 <td>
                     @if($iniciativa->imagem)
-                        <img src="{{ asset('storage/' . $iniciativa->imagem) }}" width="80">
+                        <img src="{{ Storage::url($iniciativa->imagem) }}" width="80">
                     @else
                         Sem imagem
                     @endif
                 </td>
                 <td>{{ $iniciativa->nome }}</td>
                 <td>{{ $iniciativa->categoria }}</td>
-            <td>
-    <a href="{{ route('eventos.index', $iniciativa->id) }}" class="btn btn-sm btn-outline-dark">
-        Ver Eventos ({{ $iniciativa->eventos->count() }})
-    </a> 
-</td>
+                <td>
+                    <a href="{{ route('eventos.index', $iniciativa->id) }}" class="btn btn-sm btn-outline-dark">
+                        Ver Eventos ({{ $iniciativa->eventos->count() }})
+                    </a>
+                </td>
                 @auth
                 <td>
                     <a href="{{ route('iniciativas.edit', $iniciativa->id) }}" class="btn btn-sm btn-warning">Editar</a>

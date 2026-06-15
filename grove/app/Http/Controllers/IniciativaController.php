@@ -37,7 +37,7 @@ class IniciativaController extends Controller
 
         $caminho = null;
         if ($request->hasFile('imagem')) {
-            $caminho = Storage::putFile('iniciativas', $request->file('imagem'));
+$caminho = Storage::disk('public')->putFile('iniciativas', $request->file('imagem'));
         }
 
         Iniciativa::create([
